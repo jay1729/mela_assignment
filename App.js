@@ -23,50 +23,33 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { Dimensions } from 'react-native';
+
+const win = Dimensions.get('window');
 
 import Featured from './components/Featured';
 import Brands from './components/Brands';
+import Genders from './components/Genders';
+import Types from './components/Types';
+import Offers from './components/Offers';
 
 const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <View style={storeStyles.body}>
+        <View style={storeStyles.appName} >
           <Text style={storeStyles.title} >Sweatshirt Store</Text>
+          </View>
+          <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={storeStyles.scrollView}>
+          <View style={storeStyles.body}>
           <Featured/>
           <Brands />
-          </View>
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One Passed</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
+          <Genders />
+          <Types />
+          <Offers />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -75,54 +58,27 @@ const App: () => React$Node = () => {
 };
 
 const storeStyles = StyleSheet.create({
+  appName: {
+    width: win.width,
+    height: win.width*0.15,
+    justifyContent: "center",
+    backgroundColor: '#040e35'
+  },
   body: {
     backgroundColor: Colors.white,
   },
   title: {
-    fontSize: 24,
+    fontSize: 18,
+    lineHeight: 24,
     fontWeight: '600',
-    color: Colors.black,
-    padding: 10
+    color: '#ffffff',
+    padding: 10,
+    fontFamily: 'ProductSans-Medium',
+    fontWeight: "bold"
   },
-});
-
-const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+  }
 });
 
 export default App;
